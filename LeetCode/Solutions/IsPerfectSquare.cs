@@ -4,48 +4,59 @@ namespace LeetCode
 {
     public partial class Solution
     {
+        // TODO: Optimize? Beats 73.56% of submissions (https://leetcode.com/submissions/detail/342950803)
         public bool IsPerfectSquare(int num)
         {
             if (num < 1)
                 return false;
 
             var numStr = num.ToString();
-
             if (numStr.Length % 2 == 1)
                 numStr = "0" + numStr;
 
-            int remainder = 0, largestN, previousLargestN = 1, calculation;
+            int remainder = 0,
+                lastQuotient = 1,
+                calculation;
 
-            for (var i = 0; i < numStr.Length / 2; i ++)
+            for (var chunkIdx = 0; chunkIdx < numStr.Length / 2; chunkIdx++)
             {
-                var partialNumStr = remainder.ToString() + numStr.Substring(i*2, 2);
-                var partialNum = int.Parse(partialNumStr);
+                var chunkStr = remainder.ToString() + numStr.Substring(chunkIdx * 2, 2);
+                var chunk = int.Parse(chunkStr);
+                var isFirstChunk = chunkIdx == 0;
 
-                if (partialNum == 0)
+                if (chunk == 0)
                     break;
 
-                for (var j = 1; j <= 10; j++)
+                for (var digit = 1; digit <= 100; digit++)
                 {
-                    calculation = (j == 1)
-                        ? calculation = j * j
-                        : (previousLargestN * previousLargestN * 10) * j * j;
+                    calculation = GetCalculation(isFirstChunk, digit, lastQuotient);
 
-                    if (calculation == partialNum)
+                    if (calculation >= chunk)
                     {
-                        largestN = j;
-                        break;
-                    }
-                        
-                    else if (calculation > partialNum)
-                    {
-                        largestN = j - 1;
-                        remainder = partialNum - (largestN * largestN);
+                        if (calculation > chunk)
+                        {
+                            digit--;
+                            calculation = GetCalculation(isFirstChunk, digit, lastQuotient);
+                        }
+
+                        remainder = chunk - calculation;
+                        lastQuotient = (chunkIdx == 0)
+                            ? digit
+                            : lastQuotient * 10 + digit;
                         break;
                     }
                 }
             }
 
+            System.Console.WriteLine(remainder);
             return remainder == 0;
+        }
+
+        private int GetCalculation(bool isFirstChunk, int digit, int lastQuotient)
+        {
+            return isFirstChunk
+                ? digit * digit
+                : ((20 * lastQuotient) + digit) * digit;
         }
     }
 
@@ -61,7 +72,8 @@ namespace LeetCode
             Assert.True(s.IsPerfectSquare(9));
             Assert.True(s.IsPerfectSquare(16));
             Assert.False(s.IsPerfectSquare(2147483647));
-            // Failed test case.
+
+            // Test case 37/70 - https://leetcode.com/submissions/detail/341343931/
             Assert.True(s.IsPerfectSquare(808201));
         }
     }
