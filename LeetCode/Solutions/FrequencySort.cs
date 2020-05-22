@@ -8,7 +8,7 @@ namespace LeetCode
 {
     public partial class Solution
     {
-        // TODO: Optimize. Beats 9.35% of submissions (https://leetcode.com/submissions/detail/343093044)
+        // TODO: Optimize using heap. Beats 9.35% of submissions (https://leetcode.com/submissions/detail/343093044)
         public string FrequencySort(string s)
         {
             if (s.Length < 3)
