@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using Xunit;
 
@@ -13,10 +15,10 @@ namespace LeetCode
             List<int> groupA = new List<int>(),
                       groupB = new List<int>();
 
-            foreach (var pair in dislikes)
-                if (!AddPeopleToGroups(groupA, groupB, pair))
+            for (var pairIdx = 0; pairIdx < dislikes.Length; pairIdx++)
+                if (!PossibleBipartition_AddToGroups(groupA, groupB, dislikes, pairIdx))
                 {
-                    System.Console.WriteLine($"GroupA: [{string.Join(',',groupA)}]\nGroupB: [{string.Join(',',groupB)}]\nPair: [{string.Join(',',pair)}]");
+                    System.Console.WriteLine($"False [{string.Join(',',groupA)}], [{string.Join(',',groupB)}] on pair {pairIdx}/{dislikes.Length}: [{string.Join(',',dislikes[pairIdx])}]");
                     return false;
                 }
                     
@@ -24,10 +26,10 @@ namespace LeetCode
             return true;
         }
 
-        private bool AddPeopleToGroups(List<int> groupA, List<int> groupB, int[] pair)
+        private bool PossibleBipartition_AddToGroups(List<int> groupA, List<int> groupB, int[][] dislikes, int pairIdx)
         {
-            var p1 = pair[0];
-            var p2 = pair[1];
+            var p1 = dislikes[pairIdx][0];
+            var p2 = dislikes[pairIdx][1];
             var isP1Added = groupA.Contains(p1) || groupB.Contains(p1);
             var isP2Added = groupA.Contains(p2) || groupB.Contains(p2);
 
@@ -37,12 +39,32 @@ namespace LeetCode
                 groupB.Add(p2);
                 return true;
             }
-
-            // Verify that p1 & p2 are in opposite groups
+            
             if (isP1Added && isP2Added)
             {
-                return (groupA.Contains(p1) && groupB.Contains(p2)) ||
-                       (groupA.Contains(p2) && groupB.Contains(p1));
+                // Verify that p1 & p2 are in opposite groups
+                if ((groupA.Contains(p1) && groupB.Contains(p2)) ||
+                    (groupA.Contains(p2) && groupB.Contains(p1)))
+                    return true;
+
+                if ((groupA.Contains(p1) && groupA.Contains(p2)))
+                {   // If both exist in A, try to move one to group B
+                    if (PossibleBipartition_IsSwitchValid(groupA, groupB, p1, dislikes, pairIdx))
+                        return true;
+                    else if (PossibleBipartition_IsSwitchValid(groupA, groupB, p2, dislikes, pairIdx))
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                {   // If both exist in B, try to move one to group A
+                    if (PossibleBipartition_IsSwitchValid(groupB, groupA, p1, dislikes, pairIdx))
+                        return true;
+                    else if (PossibleBipartition_IsSwitchValid(groupB, groupA, p2, dislikes, pairIdx))
+                        return true;
+                    else
+                        return false;
+                }
             }
 
             // Find which group p2 is in & add p1 to the opposite group
@@ -68,6 +90,27 @@ namespace LeetCode
             }
 
             return false;
+        }
+
+        private bool PossibleBipartition_IsSwitchValid(List<int> sourceGroup, List<int> targetGroup, int person, int[][] dislikes, int dislikeIdx)
+        {
+            var tempTargetGroup = new List<int>(targetGroup);
+            tempTargetGroup.Add(person);
+
+            for (var pairIdx = 0; pairIdx <= dislikeIdx; pairIdx++)
+            {
+                var p1 = dislikes[pairIdx][0];
+                var p2 = dislikes[pairIdx][1];
+                if (tempTargetGroup.Contains(p1) && tempTargetGroup.Contains(p2))
+                {
+                    System.Console.WriteLine($"- Add {person} to [{string.Join(',', targetGroup)}] failed. dislikes[{pairIdx}] => [{p1},{p2}]");
+                    return false;
+                }
+            }
+
+            sourceGroup.Remove(person);
+            targetGroup.Add(person);
+            return true;
         }
     }
 
@@ -108,32 +151,20 @@ namespace LeetCode
 
             // Test case 40/66 (https://leetcode.com/submissions/detail/345420300)
             N = 10;
-            dislikes = new int[][] {
-                new int[] {4,7},
-                new int[] {4,8},
-                new int[] {2,8},
-                new int[] {8,9},
-                new int[] {1,6},
-                new int[] {5,8},
-                new int[] {1,2}, // Both exist in A. Try to move 1/2 to group B
-                new int[] {6,7},
-                new int[] {3,10},
-                new int[] {8,10},
-                new int[] {1,5},
-                new int[] {7,10},
-                new int[] {1,10},
-                new int[] {3,5},
-                new int[] {3,6},
-                new int[] {1,4},
-                new int[] {3,9},
-                new int[] {2,3},
-                new int[] {1,9},
-                new int[] {7,9},
-                new int[] {2,7},
-                new int[] {6,8},
-                new int[] {5,7},
-                new int[] {3,4}
-            };
+            var dislikesList = new List<int[]>();
+
+            var fileInput = ReadTestDataFromFile("PossibleBipartition_input.txt")
+                .Split(new[] { "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var str in fileInput)
+            {
+                var line = str.Split(',')
+                    .Select(n => Convert.ToInt32(n))
+                    .ToArray();
+                dislikesList.Add(line);
+            }
+
+            dislikes = dislikesList.ToArray();
             Assert.True(s.PossibleBipartition(N, dislikes));
         }
     }
