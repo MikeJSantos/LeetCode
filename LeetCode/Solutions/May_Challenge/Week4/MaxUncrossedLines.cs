@@ -7,6 +7,7 @@ namespace LeetCode
 {
     public partial class Solution
     {
+        // TODO: Complete
         public int MaxUncrossedLines(int[] A, int[] B)
         {
             var lines = new Dictionary<int, List<int[]>>();
@@ -36,6 +37,7 @@ namespace LeetCode
 
     public partial class UnitTests
     {
+        [Fact]
         public void MaxUncrossedLinesTest()
         {
             var s = new Solution();
