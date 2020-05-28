@@ -79,21 +79,27 @@ namespace LeetCode
         {
             var s = new Solution();
             int[] A;
+            int expected;
 
             A = new int[] { 1, -2, 3, -2 };
-            Assert.Equal(3, s.MaxSubarraySumCircular(A));
+            expected = 3;
+            Assert.Equal(expected, s.MaxSubarraySumCircular(A));
 
             A = new int[] { 5, -3, 5 };
-            Assert.Equal(10, s.MaxSubarraySumCircular(A));
+            expected = 10;
+            Assert.Equal(expected, s.MaxSubarraySumCircular(A));
 
             A = new int[] { 3, -1, 2, -1 };
-            Assert.Equal(4, s.MaxSubarraySumCircular(A));
+            expected = 4;
+            Assert.Equal(expected, s.MaxSubarraySumCircular(A));
 
             A = new int[] { 3, -2, 2, -3 };
-            Assert.Equal(3, s.MaxSubarraySumCircular(A));
+            expected = 3;
+            Assert.Equal(expected, s.MaxSubarraySumCircular(A));
 
             A = new int[] { -2, -3, -1 };
-            Assert.Equal(-1, s.MaxSubarraySumCircular(A));
+            expected = -1;
+            Assert.Equal(expected, s.MaxSubarraySumCircular(A));
 
             // TODO: Failed test case 101/109, TLE -- https://leetcode.com/submissions/detail/339749427/
         }

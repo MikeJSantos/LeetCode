@@ -5,8 +5,6 @@ namespace LeetCode
 {
     public partial class Solution
     {
-        private int getMinStringIter = 0;
-
         public string RemoveKdigits(string num, int k)
         {
             if (!BigInteger.TryParse(num, out var parsedNum))
@@ -47,10 +45,6 @@ namespace LeetCode
 
         private string RemoveKdigits_GetMinString(string str1, string str2)
         {
-            getMinStringIter++;
-            if (getMinStringIter % 1000 == 0)
-                System.Console.WriteLine($"GetMinString: {getMinStringIter}");
-
             if (str1 == str2)
                 return str1;
             else if (str1.Length < str2.Length)

@@ -14,8 +14,6 @@ namespace LeetCode
         // Tuple: ListNode, int (nodeCount)
         public Tuple<ListNode, int> MiddleNodeRecurse(ListNode node, int nodeCount)
         {
-            //Console.Out.WriteLine($"{node.val} => [{ListNode.Output(node)}], {nodeCount}");
-
             // Reached the end of the list & found max distance from head
             if (node.next == null)
                 return new Tuple<ListNode, int> (node, nodeCount);
@@ -28,7 +26,6 @@ namespace LeetCode
                 return new Tuple<ListNode, int>(node, tuple.Item2);
             }
 
-            // Console.Out.WriteLine($"<[{iter.Item1.val}], {iter.Item2}>, {nodeCount}");
             return tuple;
         }
     }

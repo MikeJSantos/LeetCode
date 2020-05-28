@@ -56,8 +56,6 @@ namespace LeetCode
                 if (x < _minNode.Value)
                     _minNode = newNode;
             }
-
-            Console.Out.WriteLine($"Push({x}): {_head}");
         }
 
         public void Pop()
@@ -87,8 +85,6 @@ namespace LeetCode
                 previousNode.next = null;
                 _tail = previousNode;
             }
-
-            Console.Out.WriteLine($"Pop(): {_head}");
         }
 
         public int Top()

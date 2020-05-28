@@ -37,7 +37,6 @@ namespace LeetCode
                 {
                     squaresArray[startRow, startCol] = size;
                     totalSquares++;
-                    // System.Console.WriteLine($"{totalSquares}: [{startRow},{startCol}] 1x1");
                     continue;
                 }
 
@@ -49,7 +48,6 @@ namespace LeetCode
                 {
                     squaresArray[startRow, startCol] = size;
                     totalSquares++;
-                    // System.Console.WriteLine($"{totalSquares}: [{startRow},{startCol}] {size}x{size}; [{startRow-1},{startCol-1}] {size+1}x{size+1}");
                     continue;
                 }
 
@@ -67,7 +65,6 @@ namespace LeetCode
                 {
                     squaresArray[startRow, startCol] = size;
                     totalSquares++;
-                    // System.Console.WriteLine($"{totalSquares}: [{startRow},{startCol}] {size}x{size} (manual)");
                 }
                 else
                     break;

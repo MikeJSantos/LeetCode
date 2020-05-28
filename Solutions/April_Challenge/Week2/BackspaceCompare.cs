@@ -13,7 +13,6 @@ namespace LeetCode
 
             var retVal = parsedS.Equals(parsedT);
 
-            Console.Out.WriteLine($"'{S}' => '{parsedS}' | '{T}' => '{parsedT}' == {retVal}");
             return retVal;
         }
 

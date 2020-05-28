@@ -48,7 +48,6 @@ namespace LeetCode
                 }
             }
 
-            System.Console.WriteLine(remainder);
             return remainder == 0;
         }
 
