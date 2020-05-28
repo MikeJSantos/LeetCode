@@ -72,5 +72,34 @@ namespace LeetCode
 
             return root;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is TreeNode))
+                return false;
+
+            TreeNode nodeA, nodeB;
+            Queue<TreeNode> queueA = new Queue<TreeNode>(),
+                            queueB = new Queue<TreeNode>();
+            queueA.Enqueue(this);
+            queueB.Enqueue((TreeNode) obj);
+
+            while (queueA.Any() && queueB.Any())
+            {
+                nodeA = queueA.Dequeue();
+                nodeB = queueB.Dequeue();
+
+                if (nodeA.val != nodeB.val)
+                    return false;
+            }
+
+            return !queueA.Any() && !queueB.Any();
+        }
+
+        public override int GetHashCode()
+        {
+            return val ^ (left != null ? left.val : 1) ^ (right != null ? right.val : 1);
+        }
+
     }
 }
