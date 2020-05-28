@@ -6,9 +6,9 @@ namespace LeetCode
     {
         private string ReadTestDataFromFile(string fileName)
         {
-            var basePath = @"C:\Projects\Portfolio-dotNet\LeetCode\TestData";
+            var basePath = Directory.GetCurrentDirectory();
 
-            var path = Path.Combine(basePath, fileName);
+            var path = Path.Combine(basePath, "TestData", fileName);
             using (var sr = new StreamReader(path))
             {
                 return sr.ReadToEnd();
