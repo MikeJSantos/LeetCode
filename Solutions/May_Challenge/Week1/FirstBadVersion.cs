@@ -42,14 +42,14 @@ namespace LeetCode
 
     public partial class UnitTests
     {
-        // [Fact] // Disabled until IsBadVersion() is mocked/faked
+        [Fact(Skip = "Disabled until IsBadVersion() is properly mocked/faked")]
         public void FirstBadVersionTest()
         {
             var s = new Solution();
 
-            // Assert.Equal(4, s.FirstBadVersion(5));
-            // Assert.Equal(3, s.FirstBadVersion(4));
-            // Assert.Equal(1150769282, s.FirstBadVersion(1420736637));
+            Assert.Equal(4, s.FirstBadVersion(5));
+            Assert.Equal(3, s.FirstBadVersion(4));
+            Assert.Equal(1150769282, s.FirstBadVersion(1420736637));
         }
     }
 }
