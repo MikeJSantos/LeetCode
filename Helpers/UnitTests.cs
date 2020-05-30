@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.IO;
 using Xunit;
 
@@ -17,8 +18,19 @@ namespace LeetCode
             }
         }
 
+        private int[] ReadIntArrayFromFile(string fileName)
+        {
+            return ReadTestDataFromFile(fileName)
+                .Split(',')
+                .Select(n => Convert.ToInt32(n))
+                .ToArray();
+        }
+
         private int[][] Create2dArray(int elementsPerRow, params int[] inputs)
         {
+            if (elementsPerRow < 1 || inputs.Length == 0)
+                return new int[][] {};
+
             var numRows = (int) Math.Ceiling((double) inputs.Length/elementsPerRow);
             var array = new int[numRows][];
 
@@ -27,7 +39,7 @@ namespace LeetCode
                 var sourceIndex = rowIdx * elementsPerRow;
                 var length = (sourceIndex + elementsPerRow <= inputs.Length)
                     ? elementsPerRow
-                    : inputs.Length - elementsPerRow;
+                    : inputs.Length - sourceIndex;
                 var row = new int[length];
                 Array.Copy(inputs, sourceIndex, row, 0, length);
                 array[rowIdx] = row;

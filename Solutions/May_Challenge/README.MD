@@ -35,3 +35,7 @@ Week 4:
 5) Contiguous Array                         FindMaxLength.cs            (incomplete)
 6) Possible Bipartition                     PossibleBipartition.cs
 7) Counting Bits                            CountBits.cs
+
+Week 5:
+1) Course Schedule                          CanSchedule.cs
+2) K Closest Points to Origin               KClosest.cs

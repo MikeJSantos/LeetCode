@@ -41,7 +41,7 @@ namespace LeetCode
 
                 if (intervalA[1] == upperBound)
                     indexA++;
-                
+
                 if (intervalB[1] == upperBound)
                     indexB++;
             }
@@ -58,28 +58,9 @@ namespace LeetCode
             var s = new Solution();
             int[][] A, B, expected;
 
-            A = new int[][]
-            {
-                new int[] { 0, 2 },
-                new int[] { 5, 10 },
-                new int[] { 13, 23 },
-                new int[] { 24, 25 }
-            };
-            B = new int[][]
-            {
-                new int[] { 1, 5 },
-                new int[] { 8, 12 },
-                new int[] { 15, 24 },
-                new int[] { 25, 26 }
-            };
-            expected = new int[][] {
-                new int[] { 1, 2 },
-                new int[] { 5, 5 },
-                new int[] { 8, 10 },
-                new int[] { 15, 23 },
-                new int[] { 24, 24 },
-                new int[] { 25, 25 }
-            };
+            A = Create2dArray(2, 0, 2, 5, 10, 13, 23, 24, 25);
+            B = Create2dArray(2, 1, 5, 8, 12, 15, 24, 25, 26);
+            expected = Create2dArray(2, 1, 2, 5, 5, 8, 10, 15, 23, 24, 24, 25, 25);
             Assert.Equal(expected, s.IntervalIntersection(A, B));
         }
     }

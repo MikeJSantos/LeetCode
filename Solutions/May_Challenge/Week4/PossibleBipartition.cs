@@ -83,35 +83,22 @@ namespace LeetCode
             int[][] dislikes;
 
             N = 4;
-            dislikes = new int[][] {
-                new int[] { 1, 2 },
-                new int[] { 1, 3 },
-                new int[] { 2, 4 },
-            };
+            dislikes = Create2dArray(2, 1, 2, 1, 3, 2, 4);
             Assert.True(s.PossibleBipartition(N, dislikes));
 
             N = 3;
-            dislikes = new int[][] {
-                new int[] { 1, 2 },
-                new int[] { 1, 3 },
-                new int[] { 2, 3 },
-            };
+            dislikes = Create2dArray(2, 1, 2, 1, 3, 2, 3);
             Assert.False(s.PossibleBipartition(N, dislikes));
 
             N = 5;
-            dislikes = new int[][] {
-                new int[] { 1, 2 },
-                new int[] { 2, 3 },
-                new int[] { 3, 4 },
-                new int[] { 4, 5 },
-                new int[] { 1, 5 },
-            };
+            dislikes = Create2dArray(2, 1, 2, 2, 3, 3, 4, 4, 5, 1, 5);
             Assert.False(s.PossibleBipartition(N, dislikes));
 
             // Test case 41/66 (https://leetcode.com/submissions/detail/345420300)
             N = 10;
             var dislikesList = new List<int[]>();
 
+            // TODO: extract to reusable method?
             var fileInput = ReadTestDataFromFile("PossibleBipartition_input.txt")
                 .Split(new[] { "\r\n", "\r", "\n"}, StringSplitOptions.RemoveEmptyEntries);
 
@@ -128,12 +115,7 @@ namespace LeetCode
 
             // Test case 66/66 (https://leetcode.com/submissions/detail/345505746/)
             N = 5;
-            dislikes = new int[][] {
-                new int[] { 1, 2 },
-                new int[] { 3, 4 },
-                new int[] { 4, 5 },
-                new int[] { 3, 5 }
-            };
+            dislikes = Create2dArray(2, 1, 2, 3, 4, 4, 5, 3, 5);
             Assert.False(s.PossibleBipartition(N, dislikes));
         }
     }

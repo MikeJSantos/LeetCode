@@ -47,6 +47,7 @@ namespace LeetCode
         {
             var s = new Solution();
             ListNode input, expected;
+            int[] array;
 
             input    = ListNode.Build(1, 2, 3, 4, 5);
             expected = ListNode.Build(1, 3, 5, 2, 4);
@@ -65,17 +66,11 @@ namespace LeetCode
             Assert.Equal(expected, s.OddEvenList(input));
 
             // Test Case 70/71
-            var convertedArray = ReadTestDataFromFile("OddEvenList_input.txt")
-                .Split(',')
-                .Select(n => Convert.ToInt32(n))
-                .ToArray();
-            input = ListNode.Build(convertedArray);
+            array = ReadIntArrayFromFile("OddEvenList_input.txt");
+            input = ListNode.Build(array);
 
-            convertedArray = ReadTestDataFromFile("OddEvenList_output.txt")
-                .Split(',')
-                .Select(n => Convert.ToInt32(n))
-                .ToArray();
-            expected = ListNode.Build(convertedArray);
+            array = ReadIntArrayFromFile("OddEvenList_output.txt");
+            expected = ListNode.Build(array);
             Assert.Equal(expected, s.OddEvenList(input));
         }
     }

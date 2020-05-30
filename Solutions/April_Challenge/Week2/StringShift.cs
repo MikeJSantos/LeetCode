@@ -45,11 +45,11 @@ namespace LeetCode
             int[][] shift;
 
             inputStr = "abc";
-            shift = new int[][] { new int[] { 0, 1 }, new int[] { 1, 2 } };
+            shift = Create2dArray(2, 0, 1, 1, 2);
             Assert.Equal("cab", s.StringShift(inputStr, shift));
 
             inputStr = "abcdefg";
-            shift = new int[][] { new int[] { 1, 1 }, new int[] { 1, 1 }, new int[] { 0, 2 }, new int[] { 1, 3 } };
+            shift = Create2dArray(2, 1, 1, 1, 1, 0, 2, 1, 3);
             Assert.Equal("efgabcd", s.StringShift(inputStr, shift));
         }
     }
