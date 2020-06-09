@@ -6,8 +6,8 @@ Week 1:
 3) Two City Scheduling              TwoCitySchedCost.cs
 4) Reverse String                   ReverseString.cs
 5) Random Pick With Weight          RandPickWithWeight.cs
-6) Queue Reconstruction by Height
-7) Coin Change 2
+6) Queue Reconstruction by Height   
+7) Coin Change 2                    
 
 Week 2:
 1) Power of Two                     IsPowerOfTwo.cs
