@@ -5,7 +5,7 @@ Week 1:
 2) Delete Node in a Linked List     DeleteNode.cs
 3) Two City Scheduling              TwoCitySchedCost.cs
 4) Reverse String                   ReverseString.cs
-5) Random Pick With Weight          RandPickWithWeight.cs
+5) Random Pick With Weight          RandPickWithWeight.cs       (incomplete)
 6) Queue Reconstruction by Height   
 7) Coin Change 2                    
 

@@ -4,12 +4,12 @@ using Xunit;
 
 namespace LeetCode
 {
-    public class RandPickWithWeight
+    public class RandomPickWithWeight
     {
         private int[] _weightArray;
         private int weightSum;
 
-        public RandPickWithWeight(int[] w)
+        public RandomPickWithWeight(int[] w)
         {
             _weightArray = w;
             weightSum = _weightArray.Sum();
@@ -37,12 +37,12 @@ namespace LeetCode
         [Fact]
         public void RandPickWithWeightTest()
         {
-            RandPickWithWeight s;
+            RandomPickWithWeight s;
             int[] w;
 
             // w = new int[] { 1, 2, 3, 4, 5 };
             w = new int[] { 20, 100, 1, 50, 500 };
-            s = new RandPickWithWeight(w);
+            s = new RandomPickWithWeight(w);
 
             for (var i = 0; i < 10; i++)
                 System.Console.WriteLine($"PickIndex(): {s.PickIndex()}");
