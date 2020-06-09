@@ -11,7 +11,7 @@ Week 1:
 
 Week 2:
 1) Power of Two                     IsPowerOfTwo.cs
-2) 
+2) Is Subsequence                   IsSubsequence.cs
 3) 
 4) 
 5) 
