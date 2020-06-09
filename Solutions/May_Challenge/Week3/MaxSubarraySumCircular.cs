@@ -74,7 +74,7 @@ namespace LeetCode
 
     public partial class UnitTests
     {
-        [Fact(Skip = "Incomplete")]
+        [Fact(Skip = "Can't handle large arrays (up to 30,000 elements)")]
         public void MaxSubarraySumCircularTest()
         {
             var s = new Solution();

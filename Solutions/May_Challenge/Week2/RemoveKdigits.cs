@@ -66,7 +66,7 @@ namespace LeetCode
 
     public partial class UnitTests
     {
-        [Fact(Skip = "Incomplete. Can't handle 10,000 length input")]
+        [Fact(Skip = "Can't handle large input lengths (up to 10,002)")]
         public void RemoveKdigitsTest()
         {
             var s = new Solution();
@@ -98,7 +98,7 @@ namespace LeetCode
             output = num;
             Assert.Equal(output, s.RemoveKdigits(num, k));
 
-            // TODO: Failed test case. Length 10,001 > 8899
+            // TODO: Failed test case. Length 10,001 > 8899 (https://leetcode.com/submissions/detail/338806794/)
             num = ReadTestDataFromFile("RemoveKdigits_input.txt");
             k = 1000;
             output = ReadTestDataFromFile("RemoveKdigits_output.txt");

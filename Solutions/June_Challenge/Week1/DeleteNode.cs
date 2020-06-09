@@ -18,10 +18,21 @@ namespace LeetCode
 
     public partial class UnitTests
     {
-        [Fact(Skip = "Can't reproduce")]
+        [Fact]
         public void DeleteNodeTest()
         {
-            // TODO: Figure out how to test this
+            var s = new Solution();
+            ListNode before, after, nodeToDelete;
+
+            before = ListNode.Build(1, 2, 3, 4, 5);
+            after  = ListNode.Build(1, 2, 4, 5);
+
+            nodeToDelete = before;
+            while (nodeToDelete.val != 3)
+                nodeToDelete = nodeToDelete.next;
+
+            s.DeleteNode(nodeToDelete);
+            Assert.Equal(before, after);
         }
     }
 }
