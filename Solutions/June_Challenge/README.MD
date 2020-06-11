@@ -12,8 +12,8 @@ Week 1:
 Week 2:
 1) Power of Two                     IsPowerOfTwo.cs
 2) Is Subsequence                   IsSubsequence.cs
-3) 
-4) 
+3) Search Insert Position           SearchInsert.cs
+4) SortColors                       SortColors.cs
 5) 
 6) 
 7) 
