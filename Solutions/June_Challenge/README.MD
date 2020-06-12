@@ -14,6 +14,6 @@ Week 2:
 2) Is Subsequence                   IsSubsequence.cs
 3) Search Insert Position           SearchInsert.cs
 4) SortColors                       SortColors.cs
-5) 
+5) Insert Delete GetRandom O(1)     RandomizedSet.cs
 6) 
 7) 
