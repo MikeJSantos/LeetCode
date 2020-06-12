@@ -4,23 +4,25 @@ using Xunit;
 
 namespace LeetCode
 {
+    // Optimize. Beats 27.69% of submissions. 2x / 228ms slower than median
     public class RandomPickWithWeight
     {
+        private Random _random;
         private int[] _weightArray;
-        private int weightSum;
+        private int _weightSum;
 
         public RandomPickWithWeight(int[] w)
         {
+            _random      = new Random();
             _weightArray = w;
-            weightSum = _weightArray.Sum();
-
-            System.Console.WriteLine($"weightSum: {weightSum}");
+            _weightSum   = _weightArray.Sum();
         }
 
         public int PickIndex()
         {
-            var randomNumber = new Random().Next(1, weightSum);
+            var randomNumber = _random.Next() % _weightSum;
 
+            // TODO: This is slow. Find a faster algorithm
             for (var i = 0; i < _weightArray.Length; i++)
             {
                 if (randomNumber < _weightArray[i])
@@ -28,7 +30,7 @@ namespace LeetCode
                 randomNumber -= _weightArray[i];
             }
 
-            return new Random().Next(0, _weightArray.Length-1);
+            return _random.Next() % _weightArray.Length;
         }
     }
 
