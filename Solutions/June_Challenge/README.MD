@@ -17,3 +17,12 @@ Week 2:
 5) Insert Delete GetRandom O(1)     RandomizedSet.cs
 6) 
 7) 
+
+Week 3:
+1) Search in a Binary Search Tree   SearchBST.cs
+2) 
+3) 
+4) 
+5) 
+6) 
+7) 
