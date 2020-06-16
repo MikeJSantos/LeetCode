@@ -20,7 +20,7 @@ Week 2:
 
 Week 3:
 1) Search in a Binary Search Tree   SearchBST.cs
-2) 
+2) Validate IP Address              ValidIPAddress.cs
 3) 
 4) 
 5) 
