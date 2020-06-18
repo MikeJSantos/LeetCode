@@ -26,6 +26,32 @@ namespace LeetCode
                 .ToArray();
         }
 
+        private char[][] Read2dCharArrayFromFile(string fileName, char delimiter = ',')
+        {
+            var input = ReadTestDataFromFile(fileName)
+                .Split(Environment.NewLine);
+
+            var retVal = new char[input.Length][];
+
+            for (var i = 0; i < input.Length; i++)
+            {
+                retVal[i] = input[i]
+                    .Split(delimiter)
+                    .Select(n => Convert.ToChar(n))
+                    .ToArray();
+            }
+
+            return retVal;
+        }
+
+        private void Print2dCharArray(string label, char[][] array)
+        {
+            System.Console.WriteLine($"{label}:");
+            array.ToList().ForEach(line => 
+                Console.WriteLine(string.Join(' ', line))
+            );
+        }
+
         private int[][] Create2dArray(int elementsPerRow, params int[] inputs)
         {
             if (elementsPerRow < 1 || inputs.Length == 0)
@@ -64,6 +90,25 @@ namespace LeetCode
                 new int[] { 4, 5 }
             };
             Assert.Equal(expected, Create2dArray(3, 1, 2, 3, 4, 5));
+        }
+
+        [Fact]
+        public void Read2dCharArrayFromFileTest()
+        {
+            string fileName;
+            char[][] data;
+            
+            fileName = "SurroundedRegions_input.txt";
+            data = Read2dCharArrayFromFile(fileName, ' ');
+            Console.WriteLine($"{fileName}:");
+            data.ToList().ForEach(line => Console.WriteLine(string.Join(' ', line)));
+
+            Console.WriteLine();
+
+            fileName = "SurroundedRegions_output.txt";
+            data = Read2dCharArrayFromFile(fileName, ' ');
+            Console.WriteLine($"{fileName}:");
+            data.ToList().ForEach(line => Console.WriteLine(string.Join(' ', line)));
         }
     }
 }
