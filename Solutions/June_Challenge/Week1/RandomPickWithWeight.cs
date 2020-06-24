@@ -4,7 +4,8 @@ using Xunit;
 
 namespace LeetCode
 {
-    // Optimize. Beats 27.69% of submissions. 2x / 228ms slower than median
+    // Optimize. Beats 27.69% of submissions. (2x / 228ms slower than mode)
+    // https://leetcode.com/submissions/detail/352694869/
     public class RandomPickWithWeight
     {
         private Random _random;

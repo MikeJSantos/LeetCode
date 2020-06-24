@@ -7,8 +7,8 @@ namespace LeetCode
 {
     public partial class Solution
     {
-        // TODO: Optimize? Beats 30.95% of submissions, 28ms slower than median
-        // (https://leetcode.com/submissions/detail/345516225/)
+        // TODO: Optimize? Beats 30.95% of submissions (28ms slower than mode)
+        // https://leetcode.com/submissions/detail/345516225/
         public bool PossibleBipartition(int N, int[][] dislikes)
         {
             if (N <= 1 || dislikes == null || dislikes.Length == 0)

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace LeetCode
 {
-    // TODO: Optimize. Beats 55.11% of submissions (16 ms slower than median)
+    // TODO: Optimize. Beats 55.11% of submissions (16 ms slower than mode)
     // https://leetcode.com/submissions/detail/352689711
     public class RandomizedSet
     {

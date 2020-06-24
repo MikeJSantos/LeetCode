@@ -7,7 +7,7 @@ namespace LeetCode
 {
     public partial class Solution
     {
-        // TODO: Optimize. Beats 41.98% of submissions (68ms slower than median)
+        // TODO: Optimize. Beats 41.98% of submissions (68ms slower than mode)
         // https://leetcode.com/submissions/detail/346748585
         public int[][] KClosest(int[][] points, int K)
         {
