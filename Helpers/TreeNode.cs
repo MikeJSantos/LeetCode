@@ -29,6 +29,7 @@ namespace LeetCode
             return val.ToString();
         }
 
+        // Builds a binary tree in breadth-first/level order
         public static TreeNode Build(params int?[] array)
         {
             if (array == null || array.Length == 0 || !array[0].HasValue)
