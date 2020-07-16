@@ -1,18 +1,36 @@
-using System;
-using System.Collections.Generic;
+using System.Text;
 using Xunit;
 
 namespace LeetCode
 {
     public partial class Solution
     {
-        // TODO: Optimize. Beats 12.20% of submissions (70ms/77% slower than mode)
-        // https://leetcode.com/submissions/detail/367083667
+        // Beats 95.99% of submissions
+        // https://leetcode.com/submissions/detail/367096605
         public string ReverseWords(string s)
         {
-            var strArray = s.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            Array.Reverse(strArray);
-            return string.Join(' ', strArray);
+            if (s.Length == 0)
+                return string.Empty;
+
+            var strBuilder = new StringBuilder();
+            int endIndex = 0;
+
+            for (var i = s.Length - 1; i >= 0; i--)
+            {
+                if (s[i] == ' ' && endIndex != 0)
+                {
+                    var length = endIndex - i;
+                    strBuilder.Append($"{s.Substring(i + 1, length)} ");
+                    endIndex = 0;
+                }
+                else if (s[i] != ' ' && endIndex == 0)
+                    endIndex = i;
+            }
+
+            if (s[0] != ' ')
+                strBuilder.Append($"{s.Substring(0, endIndex + 1)}");
+
+            return strBuilder.ToString().TrimEnd();
         }
     }
 
@@ -34,6 +52,10 @@ namespace LeetCode
 
             str      = "a good   example";
             expected = "example good a";
+            Assert.Equal(expected, s.ReverseWords(str));
+
+            str      = " 1";
+            expected = "1";
             Assert.Equal(expected, s.ReverseWords(str));
         }
     }
