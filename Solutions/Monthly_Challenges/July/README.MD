@@ -6,7 +6,7 @@ Week 1:
 3) Prison Cells After N Days                PrisonAfterNDays.cs
 4) Ugly Number II                           NthUglyNumber.cs (TLE)
 5) Hamming Distance
-6) Plus One
+6) Plus One                                 PlusOne.cs
 7) Island Perimiter
 
 Week 2:
@@ -20,6 +20,15 @@ Week 2:
 
 Week 3:
 1) Reverse Words in a String                ReverseWords.cs
+2)
+3)
+4)
+5)
+6)
+7)
+
+Week 4:
+1) Binary Tree Zigzag Level Order Trav...   ZigZagLevelOrder.cs
 2)
 3)
 4)
