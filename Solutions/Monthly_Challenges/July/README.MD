@@ -24,7 +24,7 @@ Week 3:
 3)
 4)
 5)
-6)
+6) Remove Linked List Elements              RemoveElements.cs
 7)
 
 Week 4:
