@@ -1,43 +1,26 @@
 using System;
+using System.Numerics;
+using System.Linq;
 using Xunit;
 
 namespace LeetCode
 {
     public partial class Solution
     {
-        // TODO: Optimize. Beats 31.91% of submissions (104ms/43% slower than mode)
-        // https://leetcode.com/submissions/detail/370619159
+        // Beats 88.88% of submissions
+        // https://leetcode.com/submissions/detail/371071050/
         public int[] PlusOne(int[] digits)
         {
-            if (digits == null || digits.Length == 0)
-                return digits;
-            else if (digits[digits.Length - 1] != 9)
-            {
-                digits[digits.Length - 1] += 1;
-                return digits;
-            }
+            var strDigits = string.Join("", digits);
+            var number = BigInteger.Parse(strDigits);
+            
+            number += 1;
+            
+            var retVal = number.ToString()
+                .Select(i => Convert.ToInt32(i) - 48)
+                .ToArray();
 
-            for (var i = digits.Length - 1; i >= 0; i--)
-            {
-                if (digits[i] == 9)
-                {
-                    if (i == 0)
-                    {   // 99 => 100
-                        digits = new int[digits.Length + 1];
-                        Array.Fill(digits, 0);
-                        digits[0] = 1;
-                    }
-                    else
-                        digits[i] = 0;
-                }
-                else
-                {
-                    digits[i] += 1;
-                    return digits;
-                }
-            }
-
-            return digits;
+            return retVal;
         }
     }
 
@@ -67,6 +50,10 @@ namespace LeetCode
 
             digits   = new int[] { 8, 5, 9, 9 };
             expected = new int[] { 8, 6, 0, 0 };
+            Assert.Equal(expected, s.PlusOne(digits));
+
+            digits   = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            expected = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 1 };
             Assert.Equal(expected, s.PlusOne(digits));
         }
     }
