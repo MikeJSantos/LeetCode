@@ -5,7 +5,7 @@ namespace LeetCode
 {
     public partial class Solution
     {
-        // TODO: Optimize. Beats 35.17% of submissions (44ms/55% slower than mode)
+        // TODO: Optimize. Beats 35.17% of submissions (36ms/45% slower than mode)
         // https://leetcode.com/submissions/detail/375455735/
         public bool IsPalindrome(string s)
         {
