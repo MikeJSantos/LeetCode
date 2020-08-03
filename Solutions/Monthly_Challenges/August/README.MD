@@ -4,7 +4,7 @@ Week 1:
 ID | Problem | File
 -- | ------- | ----
 1 | Detect Capital | DetectCapitalUse.cs
-2 | Design HashSet |
+2 | Design HashSet | MyHashSet.cs
 3 | Valid Palindrome |
 4 | |
 5 | |
