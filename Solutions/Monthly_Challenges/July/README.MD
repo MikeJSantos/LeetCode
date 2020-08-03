@@ -1,6 +1,6 @@
 https://leetcode.com/explore/challenge/card/july-leetcoding-challenge/
 
-## Week 1:
+## Week 1
 ID | Problem | File
 -- | ------- | ----
 1 | Arranging Coins | ArrangeCoins.cs
@@ -11,7 +11,7 @@ ID | Problem | File
 6 | Plus One | PlusOne.cs
 7 | Island Perimiter |
 
-## Week 2:
+## Week 2
 ID | Problem | File
 -- | ------- | ----
 1 | |
@@ -22,7 +22,7 @@ ID | Problem | File
 6 | |
 7 | |
 
-## Week 3:
+## Week 3
 ID | Problem | File
 -- | ------- | ----
 1 | Reverse Words in a String | ReverseWords.cs
@@ -33,7 +33,7 @@ ID | Problem | File
 6 | Remove Linked List Elements | RemoveElements.cs
 7 | |
 
-## Week 4:
+## Week 4
 ID | Problem | File
 -- | ------- | ----
 1 | Binary Tree Zigzag Level Order Traversal | ZigZagLevelOrder.cs
