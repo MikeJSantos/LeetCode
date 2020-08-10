@@ -26,6 +26,7 @@ namespace LeetCode
                 var key = word.Substring(0, i);
                 node = node.Add(key);
             }
+            node.AddCount();
         }
 
         /** Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. */
@@ -43,10 +44,8 @@ namespace LeetCode
             private int _count;
             private Dictionary<string, TrieNode> _children;
 
-            public Dictionary<string, TrieNode> Children
-            {
-                get { return _children; }
-            }
+            public int Count => _count;
+            public Dictionary<string, TrieNode> Children => _children;
 
             public TrieNode()
             {
@@ -55,25 +54,27 @@ namespace LeetCode
                 _children = new Dictionary<string, TrieNode>();
             }
 
-            public TrieNode(string key)
+            public TrieNode(string key) : this()
             {
                 _key = key;
-                _count = 1;
-                _children = new Dictionary<string, TrieNode>();
             }
 
-            public TrieNode Add(string newKey)
+            public TrieNode Add(string key)
             {
                 // Verify that child is key + char, bypassed for first character (root node)
-                if (_key != string.Empty && _key != newKey.Substring(0, newKey.Length - 1))
+                if (_key != string.Empty && _key != key.Substring(0, key.Length - 1))
                     return null;
 
-                if (_children.ContainsKey(newKey))
-                    _children[newKey]._count++;
+                TrieNode node;
+                if (_children.ContainsKey(key))
+                    node = _children[key];
                 else
-                    _children[newKey] = new TrieNode(newKey);
+                {
+                    node = new TrieNode(key);
+                    _children[key] = node;
+                }
 
-                return _children[newKey];
+                return node;
             }
 
             public bool Search(string word, int index, Dictionary<string, TrieNode> potentialMatches)
@@ -81,28 +82,43 @@ namespace LeetCode
                 if (potentialMatches == null || potentialMatches.Keys.Count == 0)
                     return false;
 
-                var newDictionary = new Dictionary<string, TrieNode>();
+                var character = word[index];
 
-                if (index == word.Length - 1 && (word[index] == '.' || potentialMatches.Keys.Any(key => key[index] == word[index])))
-                    return true;
-                
-                foreach (var keyValuePair in potentialMatches)
+                if (index == word.Length - 1)
                 {
-                    if (word[index] == '.' || word[index] == keyValuePair.Key[index])
-                        newDictionary = newDictionary
-                            .Concat(keyValuePair.Value.Children)
-                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                    if (!potentialMatches.Any(kvp => kvp.Key.Length == word.Length))
+                        return false;
+
+                    var lastCharMatchFound = potentialMatches.Any(kvp =>
+                        kvp.Value.Count > 0 && DoCharsMatch(character, kvp.Key[index])
+                    );
+                    return lastCharMatchFound;
                 }
+                    
+                var newDictionary = new Dictionary<string, TrieNode>();
+                foreach (var kvp in potentialMatches)
+                    if (DoCharsMatch(character, kvp.Key[index]))
+                        newDictionary = newDictionary
+                            .Concat(kvp.Value.Children)
+                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
                 potentialMatches = newDictionary;
 
                 return Search(word, index + 1, potentialMatches);
             }
 
+            private bool DoCharsMatch(char c, char target) => c == target || c == '.';
+            
+            public void AddCount()
+            {
+                _count += 1;
+            }
+
             public override string ToString()
             {
-                return _children.Count != 0
-                    ? $"{_key}: [{string.Join(',', _children.Keys)}]"
-                    : _key;
+                var str = $"'{_key}' ({_count})";
+                if (_children.Count != 0)
+                    str += ": [{string.Join(',', _children.Keys)}]";
+                return str;
             }
         }
     }
@@ -121,7 +137,23 @@ namespace LeetCode
             Assert.True(wd.Search(".ad"));
             Assert.True(wd.Search("b.."));
 
-            // TODO: https://leetcode.com/submissions/detail/378922632
+            // https://leetcode.com/submissions/detail/378922632
+            wd = new WordDictionary();
+            wd.AddWord("at");
+            wd.AddWord("and");
+            wd.AddWord("an");
+            wd.AddWord("add");
+            Assert.False(wd.Search("a"));
+            Assert.False(wd.Search(".at"));
+            wd.AddWord("bat");
+            Assert.True(wd.Search(".at"));
+            Assert.True(wd.Search("an."));
+            Assert.False(wd.Search("a.d."));
+            Assert.False(wd.Search("b."));
+            Assert.True(wd.Search("a.d"));
+            Assert.False(wd.Search("."));
+
+            // TLE: https://leetcode.com/submissions/detail/378986183
         }
     }
 }
